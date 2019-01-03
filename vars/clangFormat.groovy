@@ -14,7 +14,7 @@ def call() {
 	{
 		// Does the file exist? If so, changes are needed
 		echo 'clang-format indicates formatting changes are required. Please check the build artifacts to see the clang-format patch.'
-		archiveArtifacts 'clang_format.patch'
+		archiveArtifacts 'Build/clang_format.patch'
 
 		success = false
 	}
