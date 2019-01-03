@@ -5,7 +5,7 @@
 */
 def call() {
 	echo 'Checking clang-format output'
-	sh('make format-check')
+	sh('makemake -c Build/ format_check')
 
 	def exists = fileExists 'clang_format.patch'
 	def success = true
