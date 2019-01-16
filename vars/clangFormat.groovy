@@ -6,7 +6,7 @@
 def call() {
 	echo 'Getting build folder name'
 	def buildFolder = ""
-	def uppercaseb = sh(ls | grep Build)
+	def uppercaseb = sh(script: "ls | grep Build" returnStatus: true)
 	if(uppercaseb == 0){
 		buildFolder = "Build"	
 	}
