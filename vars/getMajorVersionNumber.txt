@@ -1,0 +1,5 @@
+<strong>getMajorVersionNumber()</strong>
+
+<p>
+    Get the git major version number. Requires tags to be in format Major.Minor.Build
+</p>
