@@ -18,7 +18,7 @@ def call() {
 	echo 'Checking clang-format output'
 	
 	
-	sh("clang-format -style=file -i -fallback-style=none ../src/*.[ch]")
+	sh("clang-format -style=file -i -fallback-style=none ../src/*.(c|h|cpp|hpp)")
 	sh("git diff > clang_format.patch")
 	sh("if [ ! -s clang_format.patch ];	then rm clang_format.patch; fi")
 	
