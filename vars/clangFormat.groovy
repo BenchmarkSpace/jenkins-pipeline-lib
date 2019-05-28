@@ -4,33 +4,23 @@
 * Delete the temporary build tag that we created
 */
 def call() {
-	echo 'Getting build folder name'
-	def buildFolder = ""
-	def uppercaseb = sh(script: "ls | grep Build", returnStatus: true)
-	if(uppercaseb == 0){
-		buildFolder = "Build"
-	}
-	else{
-		buildFolder = "build"
-	}
 
-	echo "Build folder is $buildFolder"
 	echo 'Checking clang-format output'
 
 
-	sh("clang-format -style=file -i -fallback-style=none ../src/*.[ch]")
+	sh("clang-format -style=file -i -fallback-style=none ./src/*.[ch]")
 	sh("git diff > clang_format.patch")
 	sh("if [ ! -s clang_format.patch ];	then rm clang_format.patch; fi")
 
 
-	def exists = fileExists "${buildFolder}/clang_format.patch"
+	def exists = fileExists "./clang_format.patch"
 	def success = true
 
 	if(exists)
 	{
 		// Does the file exist? If so, changes are needed
 		echo 'clang-format indicates formatting changes are required. Please check the build artifacts to see the clang-format patch.'
-		archiveArtifacts "${buildFolder}/clang_format.patch"
+		archiveArtifacts "./clang_format.patch"
 
 		success = false
 	}
